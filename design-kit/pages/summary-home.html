@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>요약 첫 화면 · 디자인 키트 예시</title>
+<link rel="stylesheet" href="../css/design.css">
+</head>
+<body class="k-body">
+<div class="k-app" data-k-fit>
+  <header class="k-head">
+    <a class="k-brand" href="index.html">시험 준비</a>
+    <nav class="k-nav" aria-label="사이트 메뉴">
+      <span class="k-thumb" aria-hidden="true"></span>
+      <a href="summary-home.html" aria-current="page">요약</a>
+      <a href="practice-list.html">기출 실습</a>
+      <a href="concepts.html">개념</a>
+      <a href="codefind.html">코드 찾기</a>
+    </nav>
+    <div class="k-head-tools">
+      <button type="button" class="k-tool" data-k-menu="k-view" aria-expanded="false" aria-haspopup="dialog">보기</button>
+      <div class="k-pop k-pop-view" id="k-view" role="dialog" aria-label="보기 설정" hidden>
+        <p class="k-cap">화면</p>
+        <div class="k-seg"><span class="k-thumb" aria-hidden="true"></span><button type="button" data-k-set-theme="dark">어둡게</button><button type="button" data-k-set-theme="light">밝게</button></div>
+        <p class="k-cap">글자 크기</p>
+        <div class="k-seg"><span class="k-thumb" aria-hidden="true"></span><button type="button" data-k-set-size="0">작게</button><button type="button" data-k-set-size="1">보통</button><button type="button" data-k-set-size="2">크게</button></div>
+      </div>
+    </div>
+  </header>
+  <main class="k-main">
+    <div class="k-top">
+      <h1 class="k-title-l">요약</h1>
+      <span class="k-grow"></span>
+      <div class="k-seg k-seg-m"><span class="k-thumb" aria-hidden="true"></span><button type="button" aria-pressed="true">전체</button><button type="button" aria-pressed="false">자주 나옴</button><button type="button" aria-pressed="false">처음 봄</button></div>
+    </div>
+    <div class="k-topics">
+      <a class="k-topic" href="summary-topic.html"><pre class="k-art" data-k-hl>import pandas as pd
+
+df = pd.read_csv('cafe_sales.csv')
+print(df.shape)
+df.info()
+print(df.head())
+print(df.describe())
+print(df['menu'].value_counts())
+print(df['weather'].unique())
+print(df.dtypes)</pre><span class="k-topic-t"><b>데이터 읽고 살피기</b><small>정리 6개 · read_csv, info</small></span></a>
+      <a class="k-topic" href="summary-topic.html"><pre class="k-art" data-k-hl>print(df.isna().sum())
+df = df.dropna(subset=['date'])
+med = df['qty'].median()
+df['qty'] = df['qty'].fillna(med)
+
+q1, q3 = df['qty'].quantile([.25, .75])
+iqr = q3 - q1
+lo, hi = q1 - 1.5 * iqr, q3 + 1.5 * iqr
+out = df[(df['qty'] &lt; lo) | (df['qty'] &gt; hi)]
+print(len(out))</pre><span class="k-topic-t"><b>결측치와 이상치</b><small>정리 5개 · isna, fillna</small></span></a>
+      <a class="k-topic" href="summary-topic.html"><pre class="k-art" data-k-hl>s = df.groupby('menu')['qty'].sum()
+print(s.sort_values(ascending=False))
+
+t = df.groupby(['date', 'weather'])['qty']
+t = t.sum().reset_index()
+print(t.groupby('weather')['qty'].mean())
+
+pt = df.pivot_table(index='date',
+                    columns='weather',
+                    values='qty', aggfunc='sum')</pre><span class="k-topic-t"><b>그룹별 집계</b><small>정리 7개 · groupby, pivot_table</small></span></a>
+      <a class="k-topic" href="summary-topic.html"><pre class="k-art" data-k-hl>df['date'] = pd.to_datetime(df['date'])
+df['month'] = df['date'].dt.month
+df['dow'] = df['date'].dt.dayofweek
+
+m = df.groupby('month')['qty'].sum()
+print(m.idxmax())
+
+w = df.resample('W', on='date')['qty']
+print(w.sum().head())
+print(df['date'].min(), df['date'].max())</pre><span class="k-topic-t"><b>날짜 다루기</b><small>정리 4개 · to_datetime, dt</small></span></a>
+      <a class="k-topic" href="summary-topic.html"><pre class="k-art" data-k-hl>from scipy import stats
+
+rain = df.loc[df['weather'] == '비', 'qty']
+sun = df.loc[df['weather'] == '맑음', 'qty']
+t, p = stats.ttest_ind(rain, sun)
+print(round(p, 4))
+
+ct = pd.crosstab(df['menu'], df['weather'])
+chi2, p, dof, exp = stats.chi2_contingency(ct)
+print(round(p, 4))</pre><span class="k-topic-t"><b>가설 검정</b><small>정리 8개 · ttest_ind, chi2</small></span></a>
+      <a class="k-topic" href="summary-topic.html"><pre class="k-art" data-k-hl>from sklearn.linear_model import LinearRegression
+
+X = pd.get_dummies(df[['temp', 'weather']],
+                   drop_first=True)
+y = df['qty']
+model = LinearRegression().fit(X, y)
+print(model.coef_.round(3))
+print(model.intercept_)
+print(round(model.score(X, y), 3))</pre><span class="k-topic-t"><b>회귀</b><small>정리 5개 · LinearRegression</small></span></a>
+      <a class="k-topic" href="summary-topic.html"><pre class="k-art" data-k-hl>from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=0)
+clf = RandomForestClassifier(random_state=0)
+clf.fit(X_train, y_train)
+pred = clf.predict(X_test)
+print(accuracy_score(y_test, pred))</pre><span class="k-topic-t"><b>분류 모델</b><small>정리 6개 · 랜덤 포레스트</small></span></a>
+      <a class="k-topic" href="summary-topic.html"><pre class="k-art" data-k-hl>from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+
+X = StandardScaler().fit_transform(
+    df[['temp', 'qty']])
+km = KMeans(n_clusters=3, n_init=10,
+            random_state=0)
+labels = km.fit_predict(X)
+print(pd.Series(labels).value_counts())</pre><span class="k-topic-t"><b>군집</b><small>정리 3개 · KMeans</small></span></a>
+      <section class="k-side-card k-at-r1">
+        <h2 class="k-h2">자주 찾는 것</h2>
+        <a class="k-row" href="summary-topic.html"><span>두 집단 평균 비교<small>ttest_ind</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+        <a class="k-row" href="summary-topic.html"><span>그룹별 합계와 평균<small>groupby · agg</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+        <a class="k-row" href="summary-topic.html"><span>결측치 채우기<small>fillna · transform</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+        <a class="k-row" href="summary-topic.html"><span>모델 정확도<small>accuracy_score</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+      </section>
+      <section class="k-side-card k-at-r2">
+        <h2 class="k-h2">시험 볼 때 순서</h2>
+        <ol class="k-steps">
+          <li><span class="k-step-n">1</span><span><b>데이터 읽기</b><small>read_csv · info</small></span></li>
+          <li><span class="k-step-n">2</span><span><b>전처리</b><small>결측치 · 형 바꾸기</small></span></li>
+          <li><span class="k-step-n">3</span><span><b>분석</b><small>집계 · 검정 · 모델</small></span></li>
+          <li><span class="k-step-n">4</span><span><b>답 쓰기</b><small>round · print</small></span></li>
+        </ol>
+      </section>
+    </div>
+    <div class="k-continue">
+      <span class="k-continue-ic">ttest</span>
+      <span class="k-continue-t"><b>이어서: 두 집단 평균 비교</b><small>가설 검정 · 8개 중 3번째</small></span>
+      <a class="k-btn k-btn-primary k-btn-big" href="summary-topic.html">이어서 보기</a>
+    </div>
+  </main>
+</div>
+<script src="../js/design.js"></script>
+</body>
+</html>

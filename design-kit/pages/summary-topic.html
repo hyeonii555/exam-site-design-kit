@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>요약 주제 화면 · 디자인 키트 예시</title>
+<link rel="stylesheet" href="../css/design.css">
+</head>
+<body class="k-body">
+<div class="k-app" data-k-fit>
+  <header class="k-head">
+    <a class="k-brand" href="index.html">시험 준비</a>
+    <nav class="k-nav" aria-label="사이트 메뉴">
+      <span class="k-thumb" aria-hidden="true"></span>
+      <a href="summary-home.html" aria-current="page">요약</a>
+      <a href="practice-list.html">기출 실습</a>
+      <a href="concepts.html">개념</a>
+      <a href="codefind.html">코드 찾기</a>
+    </nav>
+    <div class="k-head-tools">
+      <button type="button" class="k-tool" data-k-menu="k-view" aria-expanded="false" aria-haspopup="dialog">보기</button>
+      <div class="k-pop k-pop-view" id="k-view" role="dialog" aria-label="보기 설정" hidden>
+        <p class="k-cap">화면</p>
+        <div class="k-seg"><span class="k-thumb" aria-hidden="true"></span><button type="button" data-k-set-theme="dark">어둡게</button><button type="button" data-k-set-theme="light">밝게</button></div>
+        <p class="k-cap">글자 크기</p>
+        <div class="k-seg"><span class="k-thumb" aria-hidden="true"></span><button type="button" data-k-set-size="0">작게</button><button type="button" data-k-set-size="1">보통</button><button type="button" data-k-set-size="2">크게</button></div>
+      </div>
+    </div>
+  </header>
+  <main class="k-main">
+    <div class="k-top">
+      <a class="k-back" href="summary-home.html"><svg width="9" height="15" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 1 1 7l6 6"/></svg>요약</a>
+      <h1 class="k-title">가설 검정</h1>
+      <span class="k-grow"></span>
+      <button type="button" class="k-circ" aria-label="앞 주제"><svg width="9" height="15" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 1 1 7l6 6"/></svg></button>
+      <span class="k-sub k-num">5 / 8</span>
+      <button type="button" class="k-circ" aria-label="다음 주제"><svg width="9" height="15" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></button>
+    </div>
+    <div class="k-split">
+      <article class="k-read">
+        <div class="k-prose">
+          <h2>두 집단의 평균을 비교할 때</h2>
+          <p>비 오는 날과 맑은 날처럼 서로 다른 두 집단의 평균이 같은지 볼 때는 <strong>독립 표본 t-검정</strong>을 써요. 검정 전에 두 집단을 따로 뽑아 두면 코드가 짧아져요.</p>
+          <pre class="k-code" data-k-hl>rain = df.loc[df['weather'] == '비', 'qty']
+sun = df.loc[df['weather'] == '맑음', 'qty']
+t, p = stats.ttest_ind(rain, sun)
+print(round(p, 4))</pre>
+          <h3>분산이 다르면</h3>
+          <p>두 집단의 흩어진 정도가 다르면 <code>equal_var=False</code>를 넣어요(웰치 검정). 문제에 '등분산을 가정하지 않는다'는 말이 있으면 이쪽이에요.</p>
+          <h3>정규성을 먼저 볼 때</h3>
+          <p>표본이 작으면 <code>stats.shapiro</code>로 정규성을 먼저 봐요. p값이 0.05보다 작으면 정규성이 없다고 보고 <code>stats.mannwhitneyu</code>를 써요.</p>
+          <ul>
+            <li>p값은 문제에서 말한 자리까지 <code>round</code>로 맞춰요.</li>
+            <li>귀무가설을 기각하는지는 유의수준과 비교해 한 줄로 써요.</li>
+          </ul>
+          <h2>세 집단 이상이면</h2>
+          <p><code>stats.f_oneway</code>(분산분석)로 한 번에 봐요. 어느 집단이 다른지는 사후 검정으로 따로 봐요.</p>
+        </div>
+      </article>
+      <section class="k-sits" aria-label="상황별 정리">
+        <div class="k-seg"><span class="k-thumb" aria-hidden="true"></span><button type="button" aria-pressed="true">상황별 정리</button><button type="button" aria-pressed="false">함수</button><button type="button" aria-pressed="false">자주 틀림</button></div>
+        <div class="k-sits-b">
+        <h3 class="k-sits-h">평균 비교</h3>
+        <div class="k-sit"><h4>두 집단, 서로 다른 날·사람</h4><p>독립 표본 t-검정. 분산이 다르면 equal_var=False</p><pre class="k-code" data-k-hl>stats.ttest_ind(a, b)</pre><div class="k-sit-links"><a class="k-link" href="concepts.html">개념 보기</a><a class="k-link" href="concepts.html">기출 3회 (4)</a></div></div>
+        <div class="k-sit"><h4>같은 대상의 전과 후</h4><p>대응 표본 t-검정</p><pre class="k-code" data-k-hl>stats.ttest_rel(before, after)</pre><div class="k-sit-links"><a class="k-link" href="concepts.html">개념 보기</a></div></div>
+        <div class="k-sit"><h4>세 집단 이상</h4><p>일원 분산분석</p><pre class="k-code" data-k-hl>stats.f_oneway(g1, g2, g3)</pre><div class="k-sit-links"><a class="k-link" href="concepts.html">개념 보기</a></div></div>
+        <h3 class="k-sits-h">비율·관계</h3>
+        <div class="k-sit"><h4>두 범주가 서로 관련 있는지</h4><p>카이제곱 독립성 검정</p><pre class="k-code" data-k-hl>ct = pd.crosstab(df['a'], df['b'])
+chi2, p, dof, exp = stats.chi2_contingency(ct)</pre><div class="k-sit-links"><a class="k-link" href="concepts.html">개념 보기</a><a class="k-link" href="concepts.html">기출 1회 (5)</a></div></div>
+        <div class="k-sit"><h4>두 숫자 열이 함께 움직이는지</h4><p>피어슨 상관</p><pre class="k-code" data-k-hl>r, p = stats.pearsonr(df['x'], df['y'])</pre><div class="k-sit-links"><a class="k-link" href="concepts.html">개념 보기</a></div></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="../js/design.js"></script>
+</body>
+</html>
