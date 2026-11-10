@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>코드 찾기 · 디자인 키트 예시</title>
+<link rel="stylesheet" href="../css/design.css">
+</head>
+<body class="k-body">
+<div class="k-app" data-k-fit>
+  <header class="k-head">
+    <a class="k-brand" href="index.html">시험 준비</a>
+    <nav class="k-nav" aria-label="사이트 메뉴">
+      <span class="k-thumb" aria-hidden="true"></span>
+      <a href="summary-home.html">요약</a>
+      <a href="practice-list.html">기출 실습</a>
+      <a href="concepts.html">개념</a>
+      <a href="codefind.html" aria-current="page">코드 찾기</a>
+    </nav>
+    <div class="k-head-tools">
+      <button type="button" class="k-tool" data-k-menu="k-view" aria-expanded="false" aria-haspopup="dialog">보기</button>
+      <div class="k-pop k-pop-view" id="k-view" role="dialog" aria-label="보기 설정" hidden>
+        <p class="k-cap">화면</p>
+        <div class="k-seg"><span class="k-thumb" aria-hidden="true"></span><button type="button" data-k-set-theme="dark">어둡게</button><button type="button" data-k-set-theme="light">밝게</button></div>
+        <p class="k-cap">글자 크기</p>
+        <div class="k-seg"><span class="k-thumb" aria-hidden="true"></span><button type="button" data-k-set-size="0">작게</button><button type="button" data-k-set-size="1">보통</button><button type="button" data-k-set-size="2">크게</button></div>
+      </div>
+    </div>
+  </header>
+  <main class="k-main">
+    <div id="cf" style="display: contents"></div>
+  </main>
+</div>
+<script src="../js/design.js"></script>
+<script src="codefind-demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>예시 페이지 목록 · 디자인 키트 예시</title>
+<link rel="stylesheet" href="../css/design.css">
+</head>
+<body class="k-body">
+<div class="k-app" data-k-fit>
+  <header class="k-head">
+    <a class="k-brand" href="index.html">시험 준비</a>
+    <nav class="k-nav" aria-label="사이트 메뉴">
+      <span class="k-thumb" aria-hidden="true"></span>
+      <a href="summary-home.html">요약</a>
+      <a href="practice-list.html">기출 실습</a>
+      <a href="concepts.html">개념</a>
+      <a href="codefind.html">코드 찾기</a>
+    </nav>
+    <div class="k-head-tools">
+      <button type="button" class="k-tool" data-k-menu="k-view" aria-expanded="false" aria-haspopup="dialog">보기</button>
+      <div class="k-pop k-pop-view" id="k-view" role="dialog" aria-label="보기 설정" hidden>
+        <p class="k-cap">화면</p>
+        <div class="k-seg"><span class="k-thumb" aria-hidden="true"></span><button type="button" data-k-set-theme="dark">어둡게</button><button type="button" data-k-set-theme="light">밝게</button></div>
+        <p class="k-cap">글자 크기</p>
+        <div class="k-seg"><span class="k-thumb" aria-hidden="true"></span><button type="button" data-k-set-size="0">작게</button><button type="button" data-k-set-size="1">보통</button><button type="button" data-k-set-size="2">크게</button></div>
+      </div>
+    </div>
+  </header>
+  <main class="k-main">
+    <div class="k-top"><h1 class="k-title">예시 페이지</h1><span class="k-sub">모든 내용은 지어낸 것이에요. 회사 사이트는 모양만 베껴요</span></div>
+    <section class="k-card k-card-list k-scroll" style="flex: 1">
+        <a class="k-row" href="summary-home.html"><span>요약 첫 화면<small>주제 카드, 자주 찾는 것, 시험 볼 때 순서, 이어서 보기</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+        <a class="k-row" href="summary-topic.html"><span>요약 주제 화면<small>왼쪽에서 읽고 오른쪽에서 상황별 정리</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+        <a class="k-row" href="practice-list.html"><span>기출 실습 첫 화면<small>회차 타일, 고른 회차의 문제와 기억할 것</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+        <a class="k-row" href="practice-solve.html#ok"><span>문제 풀이 · 정답과 같음<small>번호 칸, 문제 칸(주제 글 + 소문항), 편집기, 결과 칸</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+        <a class="k-row" href="practice-solve.html#diff"><span>문제 풀이 · 정답과 다름<small>다른 곳 표시</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+        <a class="k-row" href="practice-solve.html#error"><span>문제 풀이 · 오류<small>오류 줄 표시와 도움말</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+        <a class="k-row" href="practice-solve.html#idle"><span>문제 풀이 · 실행 전<small>practice-solve.html#idle</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+        <a class="k-row" href="practice-result.html"><span>채점 결과<small>맞힌 수, 소문항 표, 다시 풀기</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+        <a class="k-row" href="concepts.html"><span>개념<small>개념 목록, 고른 개념의 코드 줄이 밝아짐</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+        <a class="k-row" href="codefind.html"><span>코드 찾기 · 처음 화면<small>시험 문제를 붙여 넣는 칸과 결과가 놓일 빈 틀</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+        <a class="k-row" href="codefind.html#result"><span>코드 찾기 · 결과<small>문제 탭, 소문항 옆 코드, 오른쪽에 고른 소문항의 코드 전부</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+        <a class="k-row" href="codefind.html#edit"><span>코드 찾기 · 글 고치기<small>소문항마다 한 칸</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+        <a class="k-row" href="states.html"><span>빈 화면 · 불러오는 중 · 오류<small>states.html</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+        <a class="k-row" href="parts.html"><span>부품 모음<small>단추, 세그먼트, 칩, 스위치, 목록 줄, 코드 칸, 메뉴, 확인 창, 알림</small></span><svg class="k-chev" width="8" height="13" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1 1 6 6-6 6"/></svg></a>
+    </section>
+  </main>
+</div>
+<script src="../js/design.js"></script>
+</body>
+</html>
